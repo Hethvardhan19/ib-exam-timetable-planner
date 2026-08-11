@@ -1,22 +1,22 @@
 # IB Exam Timetable Planner
 
-A single-page planner for organizing revision around exam dates. Runs entirely in the browser - no backend, no build step.
+A personal day-by-day revision planner built around my actual IB exam schedule (Computer Science HL, Math AA HL, Chemistry HL, English A Lang & Lit SL, Economics SL, Spanish ab Initio SL) for May 2026. Single HTML file, no backend, no build step.
 
 ## Features
 
-- Day-by-day schedule you can expand/collapse
-- Search tasks by keyword
-- Filter by priority (High/Medium/Low)
-- Stats at the top: total days, tasks added, completed, % done
-- Saves to your browser's local storage, so it persists between visits
+- Every day from March 31 to May 20, 2026 laid out and expandable
+- Add, edit, check off, and delete tasks per day, each with a priority (High/Med/Low) and optional duration
+- Per-day progress bar and a notes field
+- Exam days are highlighted, with a pill showing subject, paper, session, and duration
+- Search across all tasks, filter by priority, hide completed, collapse all
+- Top bar tracks total days, tasks added, completed, remaining, and overall % done
+- "Download HTML" exports a self-contained copy of the planner with your current data baked in, so you can back it up or move it somewhere else
+- Data saves automatically to your browser's local storage
+
+## Note
+
+The exam dates and subjects are hardcoded (`EXAMS` object and the `START`/`END` range in the script) to my own IB session, so this is really built for my own revision rather than general use. Feel free to fork it and swap in your own dates if it's useful as a starting point.
 
 ## Usage
 
-Just open `index.html` in a browser, or host it for free with GitHub Pages:
-
-1. Push this repo to GitHub
-2. Go to Settings → Pages
-3. Set the source to the main branch, root folder
-4. It'll be live at `https://<your-username>.github.io/ib-exam-timetable-planner`
-
-No install, no dependencies - it's just HTML/CSS/JS.
+Just open `index.html` in a browser. Nothing to install.
