@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timetable Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f2f8; --surface: #ffffff; --surface2: #f5f7ff; --surface3: #eef0fb;
+    --border: #d8dce8; --border2: #c5c9e0; --accent: #3a56d4; --accent2: #7c5abf;
+    --accent-lt: #e8edff; --high: #dc2626; --high-lt: #fff0f0; --med: #d97706;
+    --med-lt: #fff8ee; --low: #059669; --low-lt: #edfaf4; --green: #059669;
+    --red: #dc2626; --text: #1a1f36; --text-muted: #5a6080; --text-dim: #9ba0bc;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; min-height:100vh; }
+  .hero { background: linear-gradient(135deg,#1e2a6e 0%,#2d3fa0 55%,#1a3580 100%); padding: 40px 52px 36px; text-align: center; }
+  .hero h1 { font-family:'Syne',sans-serif; font-weight:800; font-size:2.2rem; color:#fff; }
+  .stats-row { display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; justify-content:center; }
+  .stat-card { background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.18); border-radius:14px; padding:16px 26px; text-align:center; min-width:100px; }
+  .stat-num { font-family:'Syne',sans-serif; font-weight:800; font-size:1.9rem; color:#fff; }
+  .stat-label { font-size:0.7rem; color:rgba(255,255,255,0.55); text-transform:uppercase; margin-top:5px; font-weight:600; }
+  .toolbar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:14px 52px; background:var(--surface); border-bottom:2px solid var(--border); justify-content:center; }
+  .search-input { background:var(--surface2); border:1.5px solid var(--border); border-radius:9px; padding:8px 12px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.87rem; outline:none; }
+  .filter-btn { background:var(--surface2); border:1.5px solid var(--border); border-radius:8px; padding:7px 14px; color:var(--text-muted); cursor:pointer; }
+  main { padding:28px 52px 80px; display:flex; flex-direction:column; gap:8px; max-width:1100px; margin:0 auto; }
+  .day-row { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; overflow:hidden; }
+  .day-head { display:grid; grid-template-columns:64px 1fr auto auto; align-items:center; cursor:pointer; }
+  .day-badge { display:flex; flex-direction:column; align-items:center; justify-content:center; height:58px; width:64px; background:var(--surface3); }
+  .day-body { display:none; border-top:1.5px solid var(--border); padding:16px 20px 18px; background:#fafbff; }
+  .day-row.open .day-body { display:block; }
+  .footer-bar { background:var(--surface); border-top:2px solid var(--border); padding:14px 52px; display:flex; gap:10px; justify-content:center; }
+  .footer-btn { background:var(--surface2); border:1.5px solid var(--border); border-radius:9px; padding:9px 20px; color:var(--text-muted); cursor:pointer; }
+  .footer-btn.primary { background:linear-gradient(135deg,var(--accent),var(--accent2)); border:none; color:#fff; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>Timetable Planner</h1>
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num" id="sDays">51</div><div class="stat-label">Total Days</div></div>
+    <div class="stat-card"><div class="stat-num" id="sTotal">0</div><div class="stat-label">Tasks Added</div></div>
+    <div class="stat-card"><div class="stat-num" id="sDone">0</div><div class="stat-label">Completed</div></div>
+    <div class="stat-card"><div class="stat-num" id="sPct">0%</div><div class="stat-label">Overall Done</div></div>
+  </div>
+</div>
+<div class="toolbar">
+  <input class="search-input" id="searchBox" placeholder="Search tasks..." oninput="applyFilters()">
+  <button class="filter-btn" id="fAll" onclick="setFilter('all',this)">All</button>
+  <button class="filter-btn" id="fHigh" onclick="setFilter('high',this)">High</button>
+  <button class="filter-btn" id="fMed" onclick="setFilter('med',this)">Medium</button>
+  <button class="filter-btn" id="fLow" onclick="setFilter('low',this)">Low</button>
+</div>
+<main id="mainWrap"></main>
+<div class="footer-bar">
+  <button class="footer-btn primary" onclick="saveData()">Save Data</button>
+  <button class="footer-btn" onclick="clearAll()">Clear All</button>
+  <span id="saveNote"></span>
+</div>
+<script>
+let db = {};
+function saveData() { localStorage.setItem('tt_planner_data', JSON.stringify(db)); }
+function loadData() { try { const r = localStorage.getItem('tt_planner_data'); if(r) db = JSON.parse(r); } catch(e){} }
+function clearAll() { db = {}; saveData(); render(); }
+function setFilter(f) { applyFilters(); }
+function applyFilters() {}
+function render() {
+  const wrap = document.getElementById('mainWrap');
+  wrap.innerHTML = '<div class="day-row open"><div class="day-head"><div class="day-badge"><span>DAY</span></div><div style="padding:10px;">Exam Schedule Planner</div></div><div class="day-body">Active Session</div></div>';
+}
+loadData();
+render();
+</script>
+</body>
+</html>
