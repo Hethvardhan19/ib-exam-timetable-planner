@@ -1,6 +1,6 @@
 # IB Exam Timetable Planner
 
-A personal day-by-day revision planner built around my actual IB exam schedule (Computer Science HL, Math AA HL, Chemistry HL, English A Lang & Lit SL, Economics SL, Spanish ab Initio SL) for May 2026. Single HTML file, no backend, no build step.
+A personal day-by-day revision planner that I had built around my actual IB exam schedule (Computer Science HL, Math AA HL, Chemistry HL, English A Lang & Lit SL, Economics SL, Spanish ab Initio SL) right before my IB finals. Single HTML file, no backend, no build step.
 
 ## Features
 
@@ -10,8 +10,8 @@ A personal day-by-day revision planner built around my actual IB exam schedule (
 - Exam days are highlighted, with a pill showing subject, paper, session, and duration
 - Search across all tasks, filter by priority, hide completed, collapse all
 - Top bar tracks total days, tasks added, completed, remaining, and overall % done
-- "Download HTML" exports a self-contained copy of the planner with your current data baked in, so you can back it up or move it somewhere else
-- Data saves automatically to your browser's local storage
+- "Download HTML" feature to export a self-contained copy of the planner with your current data baked in, so you can back it up or move it somewhere else
+- Data automatically saved to the browser's local storage
 
 ## Note
 
